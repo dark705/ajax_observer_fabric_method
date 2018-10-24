@@ -1,6 +1,6 @@
 <?php
 namespace controllers;
-use \lib\RegistratorHandlers;
+use \lib\Collector;
 use \lib\HandlerFabric;
 
 
@@ -10,10 +10,11 @@ class Main {
 	}
 	
 	public function go(){
-		$registrator = new RegistratorHandlers();
-		$registrator->attachHandler(HandlerFabric::create('HTML'));
-		$registrator->attachHandler(HandlerFabric::create('JSON'));
-		$registrator->handleRequest($_SERVER["REQUEST_METHOD"]);
+		$collector = new Collector();
+		$collector->attachHandler(HandlerFabric::create('HTML'));
+		$collector->attachHandler(HandlerFabric::create('JSON'));
+		$collector->setRequest($_SERVER["REQUEST_METHOD"]);
+		$collector->showResponse();
 	}
 	
 }

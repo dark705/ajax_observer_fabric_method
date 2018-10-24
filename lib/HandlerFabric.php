@@ -14,7 +14,7 @@ class HandlerHTML extends HandlerFabric{
 	public function handle($request) {
 		if ($request == 'GET'){
 			$view = new \lib\View('views/html_main.php');
-			$view ->show();
+			return $view->get();
 		}
 	}
 }
@@ -24,9 +24,10 @@ class HandlerJSON extends HandlerFabric {
 		if ($request == 'POST'){
 			$status = new \lib\Status();
 			$json = new \lib\View('views/json_status.php', array('status'=>$status->get()));
-			$json ->show();
+			return $json->get();
 		}
 	}
 }
+
 
 
