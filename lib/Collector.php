@@ -29,13 +29,25 @@ class Collector {
 	
 	public function notifyHandlers(){
 		foreach ($this->handlers as $handler) {
-			$this->response .= $handler->handle($this->request);
+			$handler->handle($this);
 		}
+	}
+	
+	public function getRequest(){
+		return $this->request;
 	}
 	
 	public function setRequest($request){
 		$this->request = $request;
 		$this->notifyHandlers();
+	}
+	
+	public function setResponse($response){
+		$this->response = $response;
+	}
+	
+	public function appendResponse($response){
+		$this->response .= $response;
 	}
 	
 	public function getResponse(){
