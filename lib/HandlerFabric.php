@@ -29,5 +29,9 @@ class HandlerJSON extends HandlerFabric {
 	}
 }
 
-
+class HandlerLOG extends HandlerFabric {
+		public function handle($request) {
+			file_put_contents('log/log.txt', $request . PHP_EOL, FILE_APPEND);
+	}
+}
 
