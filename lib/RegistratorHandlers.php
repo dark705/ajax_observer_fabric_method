@@ -1,6 +1,6 @@
 <?php
 namespace lib;
-use lib\HandlerInterface;
+use lib\HandlerFabric;
 class RegistratorHandlers {
 	private $handlers;
 	
@@ -12,7 +12,7 @@ class RegistratorHandlers {
 		$this->handlers[] = $handler;
 	}
 	
-	public function  detach (HandlerInterface $handler){
+	public function  detach(HandlerInterface $handler){
 		$i = 0;
 		foreach ($this->handlers as $item){
 			if($item == $handler){

@@ -1,5 +1,5 @@
 <?php
 namespace lib;
-interface HandlerInterface {
-	public function handle($request);
+interface HandlerInterface{
+	 public function handle($request);
 }

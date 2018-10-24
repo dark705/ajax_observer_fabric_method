@@ -1,8 +1,7 @@
 <?php
 namespace controllers;
 use \lib\RegistratorHandlers;
-use \lib\HandlerJSON;
-use \lib\HandlerHTML;
+use \lib\HandlerFabric;
 
 
 class Main {
@@ -12,8 +11,8 @@ class Main {
 	
 	public function go(){
 		$registrator = new RegistratorHandlers();
-		$registrator->attachHandler(new HandlerJSON());
-		$registrator->attachHandler(new HandlerHTML());
+		$registrator->attachHandler(HandlerFabric::create('HTML'));
+		$registrator->attachHandler(HandlerFabric::create('JSON'));
 		$registrator->handleRequest($_SERVER["REQUEST_METHOD"]);
 	}
 	
