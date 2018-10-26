@@ -1,7 +1,7 @@
 <?php
 namespace controllers;
 use \lib\Collector;
-use \lib\HandlerFabric;
+use \lib\Handler;
 
 
 class Main {
@@ -11,9 +11,9 @@ class Main {
 	
 	public function go(){
 		$collector = new Collector($_SERVER);
-		$collector->attachHandler(HandlerFabric::create('HTML'));
-		$collector->attachHandler(HandlerFabric::create('JSON'));
-		$collector->attachHandler(HandlerFabric::create('LOG'));
+		$collector->attachHandler(Handler::create('HTML'));
+		$collector->attachHandler(Handler::create('JSON'));
+		$collector->attachHandler(Handler::create('LOG'));
 		$collector->notifyHandlers();
 		$collector->showResponse();
 	}
