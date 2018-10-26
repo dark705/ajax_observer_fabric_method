@@ -1,21 +1,22 @@
 <?php
 namespace controllers;
-use \lib\Collector;
+use \lib\KernelHTTP;
 use \lib\Handler;
 
 
 class Main {
-	public function __construct(){
-		
-	}
+	private function __construct(){}
 	
-	public function go(){
-		$collector = new Collector($_SERVER);
-		$collector->attachHandler(Handler::create('HTML'));
-		$collector->attachHandler(Handler::create('JSON'));
-		$collector->attachHandler(Handler::create('LOG'));
-		$collector->notifyHandlers();
-		$collector->showResponse();
+	public static function go(){
+		$http = new KernelHTTP($_SERVER);
+		
+		//Добавляем обработчиков, каждый из которых может вносить изменения в заголовок и тело ответа
+		$http->attachHandler(Handler::create('HTML'));
+		$http->attachHandler(Handler::create('JSON'));
+		$http->attachHandler(Handler::create('LOG'));
+	
+		$http->notifyHandlers(); //"Запускаем" обработчиков
+		$http->reply(); //Отвечаем клиенту
 	}
 }
 

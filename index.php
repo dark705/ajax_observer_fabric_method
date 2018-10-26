@@ -6,6 +6,6 @@ spl_autoload_register(function($class){
 	}
 });
 
-$obj = new controllers\Main;
-$obj->go();
+\controllers\Main::go();
+
 ?>

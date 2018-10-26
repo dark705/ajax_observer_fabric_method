@@ -1,11 +1,11 @@
 <?php
 namespace lib;
 class HandlerJSON extends Handler {
-		public function handle(Collector $collector) {
-		if ($collector->getRequestMethod() == 'POST'){
+		public function handle(KernelHTTP $http) {
+		if ($http->getRequestMethod() == 'POST'){
 			$status = new \lib\Status();
 			$json = new \lib\View('views/json_status.php', array('status'=>$status->get()));
-			$collector->appendResponse($json->get());
+			$http->appendResponseBody($json->get());
 		}
 	}
 }

@@ -7,7 +7,7 @@ abstract class Handler implements HandlerInterface {
 		return new $type;
 	}
 	
-	abstract public function handle(Collector $collector);
+	abstract public function handle(KernelHTTP $http);
 } 
 
 
