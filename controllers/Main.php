@@ -10,14 +10,13 @@ class Main {
 	}
 	
 	public function go(){
-		$collector = new Collector();
+		$collector = new Collector($_SERVER);
 		$collector->attachHandler(HandlerFabric::create('HTML'));
 		$collector->attachHandler(HandlerFabric::create('JSON'));
 		$collector->attachHandler(HandlerFabric::create('LOG'));
-		$collector->setRequest($_SERVER["REQUEST_METHOD"]);
+		$collector->notifyHandlers();
 		$collector->showResponse();
 	}
-	
 }
 
 ?>

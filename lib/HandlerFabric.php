@@ -12,7 +12,7 @@ abstract class HandlerFabric implements HandlerInterface {
 
 class HandlerHTML extends HandlerFabric{
 	public function handle(Collector $collector) {
-		if ($collector->getRequest() == 'GET'){
+		if ($collector->getRequestMethod() == 'GET'){
 			$view = new \lib\View('views/html_main.php');
 			$collector->setResponse($view->get());
 		}
@@ -21,7 +21,7 @@ class HandlerHTML extends HandlerFabric{
 
 class HandlerJSON extends HandlerFabric {
 		public function handle(Collector $collector) {
-		if ($collector->getRequest() == 'POST'){
+		if ($collector->getRequestMethod() == 'POST'){
 			$status = new \lib\Status();
 			$json = new \lib\View('views/json_status.php', array('status'=>$status->get()));
 			$collector->appendResponse($json->get());
@@ -31,7 +31,7 @@ class HandlerJSON extends HandlerFabric {
 
 class HandlerLOG extends HandlerFabric {
 		public function handle(Collector $collector) {
-			$request = $collector->getRequest();
+			$request = $collector->getRequestMethod();
 			file_put_contents('log/log.txt', $request . PHP_EOL, FILE_APPEND);
 	}
 }

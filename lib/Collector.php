@@ -2,12 +2,12 @@
 namespace lib;
 class Collector {
 	private $handlers;
-	private $request;
+	private $server;
 	private $response;
 	
-	public function __construct(){
+	public function __construct($server){
+		$this->server = $server;
 		$this->handlers = array();
-		$this->request = null;
 		$this->response = null;
 		
 	}
@@ -33,15 +33,11 @@ class Collector {
 		}
 	}
 	
-	public function getRequest(){
-		return $this->request;
+	public function getRequestMethod(){
+		return $this->server['REQUEST_METHOD'];
 	}
 	
-	public function setRequest($request){
-		$this->request = $request;
-		$this->notifyHandlers();
-	}
-	
+
 	public function setResponse($response){
 		$this->response = $response;
 	}
