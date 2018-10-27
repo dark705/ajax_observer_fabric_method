@@ -1,5 +1,6 @@
 <?php
 namespace lib;
+use lib\Handlers\HandlerInterface;
 class KernelHTTP {
 	private $handlers;
 	private $server;

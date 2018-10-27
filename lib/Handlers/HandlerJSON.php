@@ -1,5 +1,6 @@
 <?php
-namespace lib;
+namespace lib\Handlers;
+use lib\KernelHTTP;
 class HandlerJSON extends Handler {
 		public function handle(KernelHTTP $kernel) {
 		if ($kernel->getServer()->getRequestMethod() == 'POST'){

@@ -1,5 +1,6 @@
 <?php
-namespace lib;
+namespace lib\Handlers;
+use lib\KernelHTTP;
 class HandlerHTML extends Handler{
 	public function handle(KernelHTTP $kernel) {
 		if ($kernel->getServer()->getRequestMethod() == 'GET'){

@@ -1,5 +1,6 @@
 <?php
-namespace lib;
+namespace lib\Handlers;
+use lib\KernelHTTP;
 abstract class Handler implements HandlerInterface {
 	
 	public static function create($type){

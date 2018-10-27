@@ -1,8 +1,8 @@
 <?php
 namespace controllers;
-use \lib\KernelHTTP;
-use \lib\Server;
-use \lib\Handler;
+use lib\KernelHTTP;
+use lib\Server;
+use lib\Handlers\Handler;
 
 
 class Main {

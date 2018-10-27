@@ -1,5 +1,6 @@
 <?php
-namespace lib;
+namespace lib\Handlers;
+use lib\KernelHTTP;
 class HandlerLOG extends Handler {
 		public function handle(KernelHTTP $kernel) {
 			$request = $kernel->getServer()->getRequestMethod();
