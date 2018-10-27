@@ -1,43 +1,19 @@
 <?php
 namespace lib;
-use lib\Handlers\HandlerInterface;
-class KernelHTTP {
-	private $handlers;
+class Web
+{
 	private $server;
 	private $responseHead;
 	private $responseBody;
 	
-	public function __construct(Server $server){
+	public function __construct(array $server){
 		$this->server = $server;
-		$this->handlers = array();
 		$this->responseHeader = array();
 		$this->responseBody = array();
-		
 	}
 	
-	public function attachHandler(HandlerInterface $handler){
-		$this->handlers[] = $handler;
-	}
-	
-	public function detachHandler(HandlerInterface $handler){
-		$i = 0;
-		foreach ($this->handlers as $item){
-			if($item == $handler){
-				unset($this->handlers[$i]);
-				break;
-			}
-			$i++;
-		}
-	}
-	
-	public function notifyHandlers(){
-		foreach ($this->handlers as $handler) {
-			$handler->handle($this);
-		}
-	}
-	
-	public function getServer(){
-		return $this->server;
+	public function getRequestMethod(){
+		return $this->server['REQUEST_METHOD'];
 	}
 	
 	public function appendResponseHeader($response){
@@ -68,3 +44,4 @@ class KernelHTTP {
 		}
 	}
 }
+

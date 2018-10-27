@@ -1,6 +1,6 @@
 <?php
 namespace lib\Handlers;
-use lib\KernelHTTP;
+use lib\Kernel;
 interface HandlerInterface{
-	 public function handle(KernelHTTP $kernel);
+	 public function handle(Kernel $kernel);
 }

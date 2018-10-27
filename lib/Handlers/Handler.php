@@ -1,6 +1,6 @@
 <?php
 namespace lib\Handlers;
-use lib\KernelHTTP;
+use lib\Kernel;
 abstract class Handler implements HandlerInterface {
 	
 	public static function create($type){
@@ -8,6 +8,6 @@ abstract class Handler implements HandlerInterface {
 		return new $type;
 	}
 	
-	abstract public function handle(KernelHTTP $http);
+	abstract public function handle(Kernel $kernel);
 }
 

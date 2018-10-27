@@ -1,7 +1,7 @@
 <?php
 namespace controllers;
-use lib\KernelHTTP;
-use lib\Server;
+use lib\Kernel;
+use lib\Web;
 use lib\Handlers\Handler;
 
 
@@ -9,18 +9,21 @@ class Main {
 	private function __construct(){}
 	
 	public static function go(){
-		//Объект для более удобной работы с Суперглобальным массивом $_SERVER
-		$server = new Server($_SERVER); 
-		//Внедряем в ядро объект (Dependency Injection)
-		$kernel = new KernelHTTP($server);
+		//Объект для более удобной работы с web сервером (request - responce)
+		$web = new Web($_SERVER); 
+		//$sql = new MySQL_();
 		
-		//Добавляем обработчиков, каждый из которых может вносить изменения в заголовок и тело ответа
+		//Внедряем в ядро объект (Dependency Injection) 
+		$kernel = new Kernel($web /*, $sql*/); //также можем внедрить объект для работы с БД например MySQL
+		
+		//Добавляем обработчиков, каждый из которых может работать с сервером, получать и отправлять запросы
 		$kernel->attachHandler(Handler::create('HTML'));
 		$kernel->attachHandler(Handler::create('JSON'));
 		$kernel->attachHandler(Handler::create('LOG'));
-	
 		$kernel->notifyHandlers(); //"Запускаем" обработчиков
-		$kernel->reply(); //Отвечаем клиенту напрямую, хотя могли использовать и ещё одного обработчика или выделенный объект
+		
+		//Окончательный ответ клиенту даёт web сервер после, после работы над ним обработчиков
+		$web->reply(); 
 	}
 }
 
