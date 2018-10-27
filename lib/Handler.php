@@ -8,6 +8,5 @@ abstract class Handler implements HandlerInterface {
 	}
 	
 	abstract public function handle(KernelHTTP $http);
-} 
-
+}
 

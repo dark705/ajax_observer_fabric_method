@@ -6,7 +6,7 @@ class KernelHTTP {
 	private $responseHead;
 	private $responseBody;
 	
-	public function __construct($server){
+	public function __construct(Server $server){
 		$this->server = $server;
 		$this->handlers = array();
 		$this->responseHeader = array();
@@ -35,8 +35,8 @@ class KernelHTTP {
 		}
 	}
 	
-	public function getRequestMethod(){
-		return $this->server['REQUEST_METHOD'];
+	public function getServer(){
+		return $this->server;
 	}
 	
 	public function appendResponseHeader($response){
